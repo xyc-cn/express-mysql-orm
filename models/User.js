@@ -39,7 +39,6 @@ UserBean.finds = function(username,callback){
 }
 UserBean.findById =  function(id,callback){
     User.find(id).success(function(res){
-        console.log(res);
         if(!!callback){
             callback(res);
         }

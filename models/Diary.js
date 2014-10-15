@@ -72,7 +72,7 @@ DiaryBean.delete= function(id,callback){
             }).error(function(err) {
                     callback(err);
 
-                });
+            });
         }
         else{
             callback("nofound");

@@ -1,0 +1,56 @@
+<%- include header %>
+<div class="container-fluid">
+<div class="row-fluid">
+    <!--/span-->
+    <div class="span12" id="content">
+        <a class="btn btn-info pull-right" href="/post">添加文章</a>
+        <br>
+        <br>
+        <% for(var i=0; i<list.length; i++) { %>
+        <%}%>
+        <!--start-->
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">文章列表</div>
+            </div>
+            <div class="block-content collapse in">
+                <div class="span12">
+                    <ul class="nav nav-tabs">
+
+                        <li class="<%if(type==1){%>active<%}%>">
+                            <a href="/diary?page=0&type=1">学生生活</a>
+                        </li>
+                        <li class="<%if(type==0){%>active<%}%>"><a href="/diary?page=0&type=0">校内新闻</a></li>
+                        <li class="<%if(type==2){%>active<%}%>"><a href="/diary?page=0&type=2">校内通告</a></li>
+
+                    </ul>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>标题</th>
+                            <th>发布时间</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% for(var i=0; i<list.length; i++) { %>
+                        <tr>
+                            <td><%=i+1%></td>
+                            <td><%=list[i].title%></td>
+                            <td><%=new Date(list[i].createdAt).Format("yyyy-MM-dd ")%></td>
+                            <td><a class="btn btn-primary" href="/showDiaryById?id=<%=list[i].id%>">查看</a>
+                                <a class="btn btn-warning">修改</a>
+                                <a class="btn btn-danger" href="/deleteDiaryById?id=<%=list[i].id%>&type=<%=list[i].type%>">删除</a> </td>
+                        </tr>
+                        <%}%>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--end-->
+
+    </div>
+</div>
+<%- include footer %>

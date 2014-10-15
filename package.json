@@ -6,11 +6,14 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.4.7",
+    "connect-flash": "*",
+    "connect-multiparty": "*",
     "ejs": "*",
+    "express": "3.4.7",
+    "express-mysql-session": "^0.2.0",
+    "express-session": "^1.8.2",
     "mysql": "*",
-    "connect-flash":"*",
-    "sequelize":"*",
-    "connect-multiparty":"*"
+    "sequelize": "*",
+    "ueditor": "*"
   }
 }

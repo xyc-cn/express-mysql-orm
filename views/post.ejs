@@ -1,22 +1,10 @@
 <%- include header %>
+<style type="text/css">
+
+</style>
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="span3" id="sidebar">
-            <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
-                <li class="active">
-                    <a href="index.html"><i class="icon-chevron-right"></i> 校园快讯</a>
-                </li>
-                <li>
-                    <a href="calendar.html"><i class="icon-chevron-right"></i>新闻中心</a>
-                </li>
-                <li>
-                    <a href="stats.html"><i class="icon-chevron-right"></i>电子校报</a>
-                </li>
 
-
-            </ul>
-        </div>
-        <div class="span9" id="content">
         <div class="span12" id="content">
             <div class="row-fluid">
                 <!-- block -->
@@ -47,7 +35,7 @@
                                         <label class="control-label" for="selectError">所属类别</label>
                                         <div class="controls">
                                             <select name = "type">
-                                                <option valus="0">校内新闻</option>
+                                                <option value="0">校内新闻</option>
                                                 <option value="1">学生生活</option>
                                                 <option value="2">学校通告</option>
                                             </select>
@@ -55,7 +43,7 @@
                                     </div>
                                     <div class="control-group">
                                         <div class="block">
-                                            <textarea id="ckeditor_standard" name = "content"></textarea>
+                                            <script id="container" name="content" type="text/plain">这里写你的初始化内容</script>
                                         </div>
                                     </div>
                                     <div class="form-actions">
@@ -71,27 +59,15 @@
                 <!-- /block -->
             </div>
         </div>
-    </div>
 </div>
-    <!--/.fluid-container-->
-    <script src="javascripts/ckeditor/ckeditor.js"></script>
-    <script>
-        $(function() {
 
-            // Ckeditor standard
-
-            CKEDITOR.replace( 'ckeditor_standard', {
-                        uiColor: '#E5E5E5',
-                        width:'99.8%', height: '250px', toolbar: [
-                            { name: 'document', items: [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates','Image'] }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
-                            [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
-                            { name: 'paragraph' ,items :[ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},     // Defines toolbar group without name.
-                            { name: 'basicstyles', items: [ 'Bold', 'Italic','Maximize', 'FontSize' ] }
-                        ] }
-
-            );
-
+    <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
+    <!-- 编辑器源码文件 -->
+    <script type="text/javascript" src="/ueditor/ueditor.all.js"></script>
+    <!-- 实例化编辑器 -->
+    <script type="text/javascript">
+        var editor = new UE.ui.Editor({initialFrameHeight:400
         });
-
+        editor.render("container");
     </script>
 <%- include footer %>

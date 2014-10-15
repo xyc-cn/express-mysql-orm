@@ -15,9 +15,9 @@
 
         </div><table class="table table-bordered white">
             <tbody><tr>
-                <th width="5%">播放次序</th>
-                <th width="10%">大图名称</th>
-                <th>预览</th>
+                <th width="5%">权重</th>
+                <th width="10%">大图文字</th>
+                <th>预览(点击查看大图)</th>
                 <th width="15%">编辑</th>
                 <th width="15%">删除</th>
             </tr>
@@ -25,7 +25,7 @@
 
             <% for(var i=0; i<list.length; i++) { %>
             <tr>
-                <td><%=i+1%></td>
+                <td><%=list[i].weight%></td>
                 <td><%=list[i].name%></td>
                 <td>
                     <img src="<%=list[i].url%>" alt="0" class="tableimg">

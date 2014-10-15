@@ -24,10 +24,10 @@ module.exports = function(app) {
         if(content!=null&title!=null&author!=null&type!=null){
             var diary = new Diary(title,author,content,type);
             Diary.builds(diary);
-            res.redirect('/');
+            res.redirect('/diary?page=0&type=1');
         }
         else{
-            res.end(JSON.stringify("ddff"));
+            res.render('404');
         }
 
     });
@@ -41,15 +41,52 @@ module.exports = function(app) {
             Diary.findAndCountAllByType(type,page,function(data){
                 // res.writeHead(200, { 'Content-Type': 'text/javascript;charset=utf-8' });
                 // res.end(JSON.stringify(data));
-                res.render('index',{list:data['rows'],article:"article"});
+                res.render('showPost',{list:data['rows'],article:"article",type:type});
             });
 
         }else{
-            res.end(JSON.stringify("parameter error"));
+            res.render('404');;
         }
 
-    });
 
+    });
+    //显示一篇文章
+    app.get('/showDiaryById',filiter.checkLogin);
+    app.get('/showDiaryById',function(req,res){
+        var id = req.query.id;
+        Diary.findById(id,function(data){
+            if(data){
+                data.dataValues.article="article";
+                res.render("diaryItem",data.dataValues);
+            }
+            else{
+                res.render("404");
+            }
+        })
+    });
+    //删除文件
+    app.get('/deleteDiaryById',filiter.checkLogin);
+    app.get('/deleteDiaryById',function(req,res){
+        var id = req.query.id;
+        var type= req.query.type;
+        if(!id){
+            res.render('404')
+        }
+        else{
+            Diary.delete(id,function(data){
+                res.redirect('/diary?page=0&type='+type)
+            })
+        }
+    })
+    //获取一篇文章api
+    app.get('/onediary',function(req,res){
+        var id = req.query.id;
+        Diary.findById(id,function(data){
+            res.writeHead(200, { 'Content-Type': 'text/javascript;charset=utf-8' })
+            res.end(JSON.stringify(data));
+        })
+
+    })
 
 
 }

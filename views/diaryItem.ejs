@@ -1,0 +1,33 @@
+<%- include header %>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <!--/span-->
+        <div class="span12" id="content">
+            <a class="btn btn-info pull-right" href="/post">添加文章</a>
+            <br>
+            <br>
+
+            <!--start-->
+            <div class="block">
+                <div class="navbar navbar-inner block-header">
+                    <div class="muted pull-left">文章列表</div>
+                </div>
+                <div class="block-content collapse in">
+                    <div class="span12">
+                        <h1 class="text-center"><%=title%></h1>
+                        <legend> <p class="text-right" style="font-size: 16px">
+                                作者:<%=author%>
+                                发布时间:<%=new Date(createdAt).Format("yyyy-MM-dd ")%></p></legend>
+
+                        <br>
+                        <div class="block-content">
+                            <%-content%>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--end-->
+
+        </div>
+    </div>
+    <%- include footer %>
