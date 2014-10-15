@@ -1,0 +1,33 @@
+<%- include header %>
+<div class="container-fluid">
+    <div class="row-fluid">
+
+        <div class="span3">
+            <div class="well sidebar-nav white">
+                <ul class="nav nav-list">
+                    <li class="nav-header">首页大图</li>
+                    <li><a href="/addphoto">添加大图</a></li>
+                    <li><a href="/photoSetting?page=0">大图设置</a></li>
+                </ul>
+            </div>
+        </div><div class="span9 white">
+            <div class="block-content">
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="BannerName">请输入大图名称</label>
+                        <input type="text" name="bannername" >
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">请输入权重</label>
+                        <input type="text" name="weight">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">请选择一张图片</label>
+                        <input type="file" name="upfile">
+                    </div>
+                    <button type="submit" class="btn btn-default">确定</button>
+                </form>
+            </div>
+        </div>
+    </div>
+<%- include footer %>

@@ -1,0 +1,44 @@
+<%- include header %>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3"></div>
+        <div class="span6">
+            <div class="block">
+                <div class="navbar navbar-inner block-header">
+                    <div class="muted pull-left">Scau news background</div>
+                </div>
+                <div class="block-content collapse in">
+                    <form class="form-horizontal" method="post" action="/postlogin">
+                        <fieldset>
+                            <legend class="text-center">管理员登录</legend>
+                            <%if(data=="err"){%>
+                            <p class="text-center" style="color: red">账号或者密码错误</p>
+                            <%}%>
+                            <div class="control-group">
+                                <label class="control-label" for="inputEmail">账户</label>
+                                <div class="controls">
+                                    <input type="text" id="inputEmail" name = "username">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label" for="inputPassword">密码</label>
+                                <div class="controls">
+                                    <input type="password" id="inputPassword" name = "password">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <div class="controls">
+
+                                    <button type="submit" class="btn btn-primary">登录</button>
+                                    <button type="reset" class="btn">重置</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="span3"></div>
+    </div>
+<%- include footer %>
+

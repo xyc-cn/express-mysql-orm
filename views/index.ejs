@@ -1,0 +1,50 @@
+<%- include header %>
+<div class="container-fluid">
+<div class="row-fluid">
+    <div class="span3" id="sidebar">
+        <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+            <li class="active">
+                <a href="index.html"><i class="icon-chevron-right"></i> 校园快讯</a>
+            </li>
+            <li>
+                <a href="calendar.html"><i class="icon-chevron-right"></i>新闻中心</a>
+            </li>
+            <li>
+                <a href="stats.html"><i class="icon-chevron-right"></i>电子校报</a>
+            </li>
+
+
+        </ul>
+    </div>
+
+    <!--/span-->
+    <div class="span9" id="content">
+        <a class="btn btn-info pull-right" href="/post">添加文章</a>
+        <br>
+        <br>
+        <% for(var i=0; i<list.length; i++) { %>
+        <!--start-->
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">Article</div>
+            </div>
+            <div class="block-content collapse in">
+                <div class="span12" style ="height:150px;">
+                    <h4 class = "dy_title"><%=list[i].title%></h4>
+                    <div class= "dy_wrap">
+                        <%-list[i].content%>
+                    </div>
+                </div>
+                <p class="text-right dy_author">
+                    <i class="icon-user"></i>
+                    : <%=list[i].author%>&nbsp; &nbsp;
+                    <i class="icon-list-alt"></i>
+                    : <%=list[i].createdAt%>
+                </p>
+            </div>
+        </div>
+        <!--end-->
+        <%}%>
+    </div>
+</div>
+<%- include footer %>

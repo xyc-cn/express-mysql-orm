@@ -1,0 +1,97 @@
+<%- include header %>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span3" id="sidebar">
+            <ul class="nav nav-list bs-docs-sidenav nav-collapse collapse">
+                <li class="active">
+                    <a href="index.html"><i class="icon-chevron-right"></i> 校园快讯</a>
+                </li>
+                <li>
+                    <a href="calendar.html"><i class="icon-chevron-right"></i>新闻中心</a>
+                </li>
+                <li>
+                    <a href="stats.html"><i class="icon-chevron-right"></i>电子校报</a>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="span9" id="content">
+        <div class="span12" id="content">
+            <div class="row-fluid">
+                <!-- block -->
+
+                <div class="block">
+                    <div class="navbar navbar-inner block-header">
+                        <div class="muted pull-left">Article</div>
+                    </div>
+                    <div class="block-content collapse in">
+                        <div class="span12">
+                            <form class="form-horizontal" method="post" action="postDiary">
+                                <fieldset>
+                                    <legend>发表文章</legend>
+                                    <div class="control-group">
+                                        <label class="control-label" for="focusedInput">标题</label>
+                                        <div class="controls">
+                                            <input class="input-xlarge focused" id="focusedInput" type="text" name = "title" >
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label" for="author">作者</label>
+                                        <div class="controls">
+                                            <input class="input-xlarge focused" id="author" type="text" name = "author">
+                                        </div>
+                                    </div>
+
+                                    <div class="control-group">
+                                        <label class="control-label" for="selectError">所属类别</label>
+                                        <div class="controls">
+                                            <select name = "type">
+                                                <option valus="0">校内新闻</option>
+                                                <option value="1">学生生活</option>
+                                                <option value="2">学校通告</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="block">
+                                            <textarea id="ckeditor_standard" name = "content"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-primary ">发表</button>
+                                        <button type="reset" class="btn">重置</button>
+                                    </div>
+                                </fieldset>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /block -->
+            </div>
+        </div>
+    </div>
+</div>
+    <!--/.fluid-container-->
+    <script src="javascripts/ckeditor/ckeditor.js"></script>
+    <script>
+        $(function() {
+
+            // Ckeditor standard
+
+            CKEDITOR.replace( 'ckeditor_standard', {
+                        uiColor: '#E5E5E5',
+                        width:'99.8%', height: '250px', toolbar: [
+                            { name: 'document', items: [ 'Source', '-', 'NewPage', 'Preview', '-', 'Templates','Image'] }, // Defines toolbar group with name (used to create voice label) and items in 3 subgroups.
+                            [ 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', '-', 'Undo', 'Redo' ],
+                            { name: 'paragraph' ,items :[ 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']},     // Defines toolbar group without name.
+                            { name: 'basicstyles', items: [ 'Bold', 'Italic','Maximize', 'FontSize' ] }
+                        ] }
+
+            );
+
+        });
+
+    </script>
+<%- include footer %>

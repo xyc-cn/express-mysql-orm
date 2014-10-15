@@ -1,0 +1,48 @@
+<%- include header%>
+
+<div class="container-fluid">
+    <div class="row-fluid">
+
+        <div class="span3">
+            <div class="well sidebar-nav white">
+                <ul class="nav nav-list">
+                    <li class="nav-header">首页大图</li>
+                    <li><a href="/addphoto">添加大图</a></li>
+                    <li><a href="/photoSetting?page=0">大图设置</a></li>
+                </ul>
+            </div>
+        </div><div class="span9">
+
+        </div><table class="table table-bordered white">
+            <tbody><tr>
+                <th width="5%">播放次序</th>
+                <th width="10%">大图名称</th>
+                <th>预览</th>
+                <th width="15%">编辑</th>
+                <th width="15%">删除</th>
+            </tr>
+
+
+            <% for(var i=0; i<list.length; i++) { %>
+            <tr>
+                <td><%=i+1%></td>
+                <td><%=list[i].name%></td>
+                <td>
+                    <img src="<%=list[i].url%>" alt="0" class="tableimg">
+                </td>
+                <td>
+                    <a class="btn btn-info" href="/deletePhoto?src=<%=list[i].url%>&id=<%=list[i].id%>">修改</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" href="/deletePhoto?src=<%=list[i].url%>&id=<%=list[i].id%>">删除</a>
+                </td>
+            </tr>
+            <%}%>
+
+
+
+            </tbody></table>
+
+    </div>
+    <script src="javascripts/photo.js"></script>
+    <%- include footer%>
