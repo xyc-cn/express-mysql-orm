@@ -1,0 +1,10 @@
+# IDEA config
+*.iml
+*.ipr
+*.iws
+.idea/
+
+
+/.idea
+/node_modules
+tmp.js
