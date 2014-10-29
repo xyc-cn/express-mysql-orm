@@ -87,6 +87,19 @@ module.exports = function(app) {
         })
 
     })
+    //获取文章列表
+    app.get('/diarylist',function(req,res){
+        var page = req.query.page;
+        var type = req.query.type;
+        Diary.findAndCountAllByType(type,page, function (data) {
+            if(data!=null){
+                res.writeHead(200, { 'Content-Type': 'text/javascript;charset=utf-8' })
+                res.end(JSON.stringify(data));
+            }
+        })
+
+    })
+
 
 
 }

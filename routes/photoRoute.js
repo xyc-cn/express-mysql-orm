@@ -68,6 +68,17 @@ module.exports = function(app) {
 
     });
 
+    app.get('/photo', function (req, res) {
+        var page = req.query.page;
+        if(page!=null){
+            Photo.findAndCountAllByType(page,function(data){
+                res.writeHead(200, { 'Content-Type': 'text/javascript;charset=utf-8' })
+                res.end(JSON.stringify(data));
+            });
+        }
+
+    });
+
 
 
 }

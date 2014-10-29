@@ -51,7 +51,7 @@ DiaryBean.findAndCountAllByType = function(type,page,callback){
         limit:5
     }).success(function(result) {
             callback(result);
-        });
+    });
 }
 DiaryBean.modify = function(id,data,callback){
     Diary.find(id).success(function(res){
