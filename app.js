@@ -36,6 +36,7 @@ var allowCrossDomain = function(req, res, next) {
     } else {
         next();
     }
+
 };
 app.use(allowCrossDomain);
 app.use(app.router);

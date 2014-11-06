@@ -29,7 +29,6 @@ module.exports = function(app) {
         else{
             res.render('404');
         }
-
     });
     //获取文章内容
     app.get('/diary',filiter.checkLogin);
