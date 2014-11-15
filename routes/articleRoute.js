@@ -9,10 +9,7 @@ module.exports = function(app) {
     app.get('/post',filiter.checkLogin);
     app.get('/post', function (req, res) {
         req.flash('info', 'Welcome');
-        res.render('post', {
-            title: 'Home',
-            info: req.flash("info").toString()
-        })
+        res.render('post')
     });
     //新增文章
     app.post("/postDiary",filiter.checkLogin);
@@ -21,7 +18,7 @@ module.exports = function(app) {
         var title = req.body.title;
         var author = req.body.author;
         var type = req.body.type;
-        if(content!=null&title!=null&author!=null&type!=null){
+        if(content!=null&&title!=null&&author!=null&&type!=null){
             var diary = new Diary(title,author,content,type);
             Diary.builds(diary);
             res.redirect('/diary?page=0&type=1');
@@ -44,7 +41,7 @@ module.exports = function(app) {
             });
 
         }else{
-            res.render('404');;
+            res.render('404');
         }
 
 
@@ -72,34 +69,68 @@ module.exports = function(app) {
             res.render('404')
         }
         else{
-            Diary.delete(id,function(data){
+            Diary.delete(id,function(){
                 res.redirect('/diary?page=0&type='+type)
             })
         }
-    })
+    });
     //获取一篇文章api
     app.get('/onediary',function(req,res){
         var id = req.query.id;
         Diary.findById(id,function(data){
-            res.writeHead(200, { 'Content-Type': 'text/javascript;charset=utf-8' })
+            res.writeHead(200, { 'Content-Type': 'text/javascript;charset=utf-8' });
             res.end(JSON.stringify(data));
         })
 
-    })
+    });
     //获取文章列表
     app.get('/diarylist',function(req,res){
         var page = req.query.page;
         var type = req.query.type;
         Diary.findAndCountAllByType(type,page, function (data) {
             if(data!=null){
-                res.writeHead(200, { 'Content-Type': 'text/javascript;charset=utf-8' })
+                res.writeHead(200, { 'Content-Type': 'text/javascript;charset=utf-8' });
                 res.end(JSON.stringify(data));
+            }
+        });
+
+    });
+    //修改一篇文章
+    app.get('/modifyDiary',filiter.checkLogin);
+    app.get('/modifyDiary', function (req, res) {
+        var id = req.query.id;
+        Diary.findById(id,function(data){
+            if(data!=null){
+                res.render('modify',{
+                    data:data
+                })
+            }
+            else{
+                res.render('404')
             }
         })
 
+    });
+    app.post("/modifyDiary",filiter.checkLogin);
+    app.post('/modifyDiary', function (req, res) {
+        var id = req.body.id;
+        console.log(id)
+        var data = {title:req.body.title,
+                    content:req.body.content,
+                    type:req.body.type,
+                    author:req.body.author
+                }
+        Diary.modify(id,data,function(doc){
+            if(doc!=null){
+               res.redirect('/showDiaryById?id='+id);
+            }
+            else{
+               res.render('404');
+            }
+        })
     })
 
 
 
-}
+};
 

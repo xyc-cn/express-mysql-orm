@@ -8,6 +8,7 @@ var http = require('http');
 var path = require('path')
 var flash = require('connect-flash');;
 var app = express();
+var cors = require('cors');
 var utils = require('./models/utils')
 var ueditor = require('ueditor');
 var MemStore = express.session.MemoryStore;
@@ -21,24 +22,7 @@ app.use(express.bodyParser({ keepExtensions: true, uploadDir: './public/images' 
 app.set('port', process.env.PORT || 3800);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-var allowCrossDomain = function(req, res, next) {
-    // if the origin was not passed.
-    var origin = (req.headers.origin || "*");
-
-    console.log('origin:' + origin);
-
-    res.header('Access-Control-Allow-Credentials', true);
-    res.header('Access-Control-Allow-Origin', origin);
-    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Set-Cookie, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
-    if ("OPTIONS" == req.method) {
-        res.send(200);
-    } else {
-        next();
-    }
-
-};
-app.use(allowCrossDomain);
+app.use(cors());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));// development only
 if ('development' == app.get('env')) {

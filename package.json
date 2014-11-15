@@ -8,6 +8,7 @@
   "dependencies": {
     "connect-flash": "*",
     "connect-multiparty": "*",
+    "cors": "*",
     "ejs": "*",
     "express": "3.4.7",
     "express-mysql-session": "^0.2.0",

@@ -15,19 +15,22 @@
                     </div>
                     <div class="block-content collapse in">
                         <div class="span12">
-                            <form class="form-horizontal" method="post" action="postDiary">
+                            <form class="form-horizontal" method="post" action="/modifyDiary">
                                 <fieldset>
                                     <legend>发表文章</legend>
                                     <div class="control-group">
                                         <label class="control-label" for="focusedInput">标题</label>
                                         <div class="controls">
-                                            <input class="input-xlarge focused" id="focusedInput" type="text" name = "title" >
+                                            <input class="input-xlarge focused" id="focusedInput" type="text" name = "title"
+                                                    value="<%=data.title%>">
+                                            <input type="hidden" name="id" value="<%=data.id%>">
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="author">作者</label>
                                         <div class="controls">
-                                            <input class="input-xlarge focused" id="author" type="text" name = "author">
+                                            <input class="input-xlarge focused" id="author" type="text" name = "author"
+                                                     value="<%=data.author%>">
                                         </div>
                                     </div>
 
@@ -35,15 +38,15 @@
                                         <label class="control-label" for="selectError">所属类别</label>
                                         <div class="controls">
                                             <select name = "type">
-                                                <option value="0">校内新闻</option>
-                                                <option value="1">学生生活</option>
-                                                <option value="2">学校通告</option>
+                                                <option value="0" <%if(data.type==0){%>selected = "selected" <%}%>>校内新闻</option>
+                                                <option value="1" <%if(data.type==1){%>selected = "selected" <%}%>>学生生活</option>
+                                                <option value="2" <%if(data.type==2){%>selected = "selected" <%}%>>学校通告</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <div class="block">
-                                            <script id="container" name="content" type="text/plain"></script>
+                                            <script id="container" name="content" type="text/plain"><%-data.content%></script>
                                         </div>
                                     </div>
                                     <div class="form-actions">
@@ -59,7 +62,7 @@
                 <!-- /block -->
             </div>
         </div>
-</div>
+    </div>
 
     <script type="text/javascript" src="/ueditor/ueditor.config.js"></script>
     <!-- 编辑器源码文件 -->
@@ -69,6 +72,5 @@
         var editor = new UE.ui.Editor({initialFrameHeight:400
         });
         editor.render("container");
-
     </script>
-<%- include footer %>
+    <%- include footer %>

@@ -40,7 +40,7 @@
                             <td><%=list[i].title%></td>
                             <td><%=new Date(list[i].createdAt).Format("yyyy-MM-dd ")%></td>
                             <td><a class="btn btn-primary" href="/showDiaryById?id=<%=list[i].id%>">查看</a>
-                                <a class="btn btn-warning">修改</a>
+                                <a class="btn btn-warning" href="/modifyDiary?id=<%=list[i].id%>">修改</a>
                                 <a class="btn btn-danger" href="/deleteDiaryById?id=<%=list[i].id%>&type=<%=list[i].type%>">删除</a> </td>
                         </tr>
                         <%}%>

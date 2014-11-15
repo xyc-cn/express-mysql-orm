@@ -60,7 +60,7 @@ DiaryBean.modify = function(id,data,callback){
                 callback('success');
             })
         }else{
-            callback('error');
+            callback('err');
         }
     })
 }
